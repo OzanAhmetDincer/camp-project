@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App />
+    // komponentler içerisinde props ile yönlerdirme(route) işlemi yapabiliyoruz fakat farklı komponentler arasında bu işlemi yapabilmek için "react-router-rom" paketini yüklememiz gerek ve sonrasında ana component de bunun uygulanması için aşağıdaki gibi "BrowserRouter" içerisine almamız gerek.
+    <BrowserRouter><App /></BrowserRouter> 
 );
 
 // If you want to start measuring performance in your app, pass a function
