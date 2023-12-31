@@ -4,14 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import "react-toastify/dist/ReactToastify.min.css"
+import cfgstore from './store/configureStore';
+
+const store = cfgstore
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    // komponentler içerisinde props ile yönlerdirme(route) işlemi yapabiliyoruz fakat farklı komponentler arasında bu işlemi yapabilmek için "react-router-rom" paketini yüklememiz gerek ve sonrasında ana component de bunun uygulanması için aşağıdaki gibi "BrowserRouter" içerisine almamız gerek.
-    <BrowserRouter><App /></BrowserRouter> 
+    // komponentler içerisinde props ile yönlerdirme(route) işlemi yapabiliyoruz fakat farklı komponentler arasında bu işlemi yapabilmek için "react-router-rom" paketini yüklememiz gerek ve sonrasında ana component de bunun uygulanması için aşağıdaki gibi "BrowserRouter" içerisine almamız gerek. Uygulamamızı Redux alt yapısı ile kullanabilmek için "Provider" kullanırız.
+    <Provider store={store}>
+        <BrowserRouter><App /></BrowserRouter> 
+    </Provider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

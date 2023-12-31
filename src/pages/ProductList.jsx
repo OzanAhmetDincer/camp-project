@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Icon, Label, Menu, Table } from "semantic-ui-react";
+import { Button, Icon, Label, Menu, Table } from "semantic-ui-react";
 import ProductService from "../services/productService";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/actions/cartActions";
+import { toast } from "react-toastify";
 
 export default function ProductList() {
+
+  const dispatch = useDispatch()// Bir action'u yani fonksiyonu çağırmak için kullanırız. Örneğin ADD_TO_CART gibi
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -12,6 +17,11 @@ export default function ProductList() {
       .getProducts()
       .then((result) => setProducts(result.data.data));
   },[]);
+
+  const handleAddToCart = (product)=>{
+    dispatch(addToCart(product));
+    toast.success(`${product.productName} sepete eklendi!`);
+  }
 
   return (
     <div>
@@ -23,6 +33,7 @@ export default function ProductList() {
             <Table.HeaderCell>Ürün Adı</Table.HeaderCell>
             <Table.HeaderCell>Ürün Stok Bilgisi</Table.HeaderCell>
             <Table.HeaderCell>Ürün Fiyatı</Table.HeaderCell>
+            <Table.HeaderCell></Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -34,6 +45,7 @@ export default function ProductList() {
               <Table.Cell>{product.productName}</Table.Cell>
               <Table.Cell>{product.unitsInStock}</Table.Cell>
               <Table.Cell>{product.unitPrice}</Table.Cell>
+              <Table.Cell><Button onClick={()=>handleAddToCart(product)}>Sepete Ekle</Button></Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
