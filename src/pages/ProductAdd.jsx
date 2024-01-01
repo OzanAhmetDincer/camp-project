@@ -8,8 +8,8 @@ export default function ProductAdd() {
   const initialValues = { productName: "", unitPrice: 10 };// Formik için başlangıç değerleri
 
   const schema = Yup.object({// Formik için doğrulama şeması
-    productName: Yup.string().required("Ürün adi zorunlu"),
-    unitPrice: Yup.number().required("Ürün fiyati zorunlu"),
+    productName: Yup.string().required("Ürün adı zorunlu"),
+    unitPrice: Yup.number().required("Ürün fiyatı zorunlu"),
   });
   return (
     <div>
@@ -21,8 +21,8 @@ export default function ProductAdd() {
         }}
       >
         <Form className="ui form">
-          <TobetoTextInput name="productName" placeholder="Ürün adi" />
-          <TobetoTextInput name="unitPrice" placeholder="Ürün fiyati" />
+          <TobetoTextInput name="productName" placeholder="Ürün adı" />
+          <TobetoTextInput name="unitPrice" placeholder="Ürün fiyatı" />
           <Button color="green" type="submit"> Ekle </Button>
         </Form>
       </Formik>

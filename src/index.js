@@ -6,9 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import "react-toastify/dist/ReactToastify.min.css"
-import cfgstore from './store/configureStore';
+import cfgstore, { configureStore } from './store/configureStore';
 
-const store = cfgstore
+//const store = cfgstore
+const store = configureStore()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

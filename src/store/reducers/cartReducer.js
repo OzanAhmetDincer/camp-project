@@ -10,7 +10,7 @@ const initialState = {
 export default function cartReducer(state = initialState, {type,payload}) {
   switch (type) {
     case ADD_TO_CART:
-        let product = state.cartItems.find((c)=>c.product.id === payload.id)
+        let product = state.cartItems.find((c)=>c.product.id === payload.productId)
         if (product) {
             product.quantity++;
             // Bu şekilde ekrandan üründe arttırım işlemi yaptığımız zaman tarayıcı üzerinde hemen değişiklik yapmaz referansında güncelleme yapmaz. Bunu yapabilmesi için aşağıdaki kodları yazarız. Eğer o üründen varsa bu if bloğuna girecek "...state" ile önceki elemanları ayıracak ve ekleme işlemini yapacak
@@ -23,7 +23,7 @@ export default function cartReducer(state = initialState, {type,payload}) {
     case REMOVE_FROM_CART:
         return{
             ...state,
-            cartItems:state.cartItems.filter(c=>c.product.id !== payload.id)// filter bize bir array döndürecek "!==" ile bizim gönderdiğimiz id dışındakileri array yap dediy yani silinmesini istediğimiz yani gönderdiğimiz id yi silmiş olduk.
+            cartItems:state.cartItems.filter(c=>c.product.id !== payload.productId)// filter bize bir array döndürecek "!==" ile bizim gönderdiğimiz id dışındakileri array yap dediy yani silinmesini istediğimiz yani gönderdiğimiz id yi silmiş olduk.
         }
   
     default:
