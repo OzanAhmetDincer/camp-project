@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Icon, Label, Menu, Table } from "semantic-ui-react";
+import { Button, Icon, Menu, Table } from "semantic-ui-react";
 import ProductService from "../services/productService";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";

@@ -6,14 +6,15 @@ import { Dropdown, DropdownDivider, Label } from "semantic-ui-react";
 export default function CartSummary() {
 
   // "useSelector" ile oluşturduğumuz sepeti "cartItems" içerisine attık
-  const {cartItems} = useSelector(state=>state.cart)
+  const cartItems = useSelector(state => state.cart.cartItems)
   return (
     <div>
       <Dropdown item text="Sepetiniz">
               <Dropdown.Menu>
                 {
                   cartItems.map((cartItem)=>(
-                    <Dropdown.Item key={cartItem.product.id}>
+                    <Dropdown.Item key={cartItem.product.productId}>
+                      {console.log(cartItem)}
                       <span>{cartItem.product.productName}</span><br/>
                       <Label>
                         {cartItem.quantity}

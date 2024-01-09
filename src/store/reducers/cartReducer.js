@@ -10,11 +10,14 @@ const initialState = {
 export default function cartReducer(state = initialState, {type,payload}) {
   switch (type) {
     case ADD_TO_CART:
-        let product = state.cartItems.find((c)=>c.product.id === payload.productId)
+        let product = state.cartItems.find((c)=>c.product.productId === payload.productId)
         if (product) {
             product.quantity++;
             // Bu şekilde ekrandan üründe arttırım işlemi yaptığımız zaman tarayıcı üzerinde hemen değişiklik yapmaz referansında güncelleme yapmaz. Bunu yapabilmesi için aşağıdaki kodları yazarız. Eğer o üründen varsa bu if bloğuna girecek "...state" ile önceki elemanları ayıracak ve ekleme işlemini yapacak
-            return {...state}
+            return {
+                ...state,
+                cartItems: [...state.cartItems]
+            }
         } else {
             // ürün ilk kez eklenecekse "...state" ile sepetteki diğer ürünleri ayır, sonrasında "cartItems" için yeni bir dizi oluştur yani yeni referans, bunun içerisine "...state.cartItems" ile önceden eklenenleri ekle "payload" ile de yeni ürünleri ekle dedik.
             return { ...state, cartItems: [...state.cartItems, {quantity:1, product: payload}] };
